@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open in App</title>
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const videoId = params.get('v');
+            if (videoId) {
+                // This 'intent' line tells the phone to open the YouTube App
+                window.location.href = "vnd.youtube:" + videoId;
+                // Fallback to the browser if the app doesn't open in 2 seconds
+                setTimeout(() => {
+                    window.location.href = "https://www.youtube.com/watch?v=" + videoId;
+                }, 2000);
+            } else {
+                document.body.innerHTML = "Error: No Video ID provided.";
+            }
+        };
+    </script>
+</head>
+<body>
+    <p>Redirecting to YouTube App...</p>
+</body>
+</html>
